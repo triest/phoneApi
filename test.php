@@ -4,7 +4,7 @@ require_once('PhoneApi.php');
 
 
 $phoneApi = new PhoneApi();
-$rez = $phoneApi->isValidNumber("g");
+$rez = $phoneApi->isValidNumber("79214623189");
 if ($rez) {
     echo "true";
 } else {
