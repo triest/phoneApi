@@ -15,8 +15,6 @@ class PhoneApi
 
     function isValidNumber($number)
     { // Your Account Sid and Auth Token from twilio.com/user/account
-        $sid = "AC8ccd9e7f6813b7b921ccbd38f037f19a";
-        $token = "cf1e109ed1ca27fcecf1092b80aebdb7";
         $client = new Lookups_Services_Twilio($this->sid, $this->token); // Try performing a carrier lookup and return true if successful.
         try {
             $number = $client->phone_numbers->get($number, array("CountryCode" => "US", "Type" => "carrier"));

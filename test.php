@@ -3,9 +3,16 @@
 require_once('PhoneApi.php');
 
 
-$phoneApi=new PhoneApi();
-$rez=$phoneApi->isValidNumber("+792123189");
-echo $rez;
+$phoneApi = new PhoneApi();
+$rez = $phoneApi->isValidNumber("g");
+if ($rez) {
+    echo "true";
+} else {
+    echo "false";
+}
+
+
+
 /**
  * Created by PhpStorm.
  * User: triest
