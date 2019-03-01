@@ -1,14 +1,29 @@
 <?php
 
-require_once 'PHPUnit/Framework.php';
+//namespace UnitTestFiles\Test;
+use PHPUnit\Framework\TestCase;
+
 require_once('PhoneApi.php');
 
-class PhoneApiTest extends PHPUnit_Framework_TestCase {
+class PhoneApiTest extends \PHPUnit_Framework_TestCase
+{
 
-
-    public function TestisCorectInput()
+    /*Test to Valid Number*/
+    public function testCorectInputTrue()
     {
         $phoneApi = new PhoneApi();
-        $this->assertEquals(8, $phoneApi->isValidNumber("79214623189", true));
+        $this->assertSame(true, $phoneApi->isValidNumber("79214623189"));
+    }
+
+    public function testCorectInputFalse()
+    {
+        $phoneApi = new PhoneApi();
+        $this->assertSame(false, $phoneApi->isValidNumber("7926231"));
+    }
+
+    public function testInCorectInput()
+    {
+        $phoneApi = new PhoneApi();
+        $this->assertSame(false, $phoneApi->isValidNumber("ddd"));
     }
 }

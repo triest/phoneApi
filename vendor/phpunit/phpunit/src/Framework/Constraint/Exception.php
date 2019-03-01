@@ -7,12 +7,11 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-namespace PHPUnit\Framework\Constraint;
 
-use PHPUnit\Util\Filter;
-use Throwable;
-
-class Exception extends Constraint
+/**
+ * @since Class available since Release 3.6.6
+ */
+class PHPUnit_Framework_Constraint_Exception extends PHPUnit_Framework_Constraint
 {
     /**
      * @var string
@@ -32,8 +31,7 @@ class Exception extends Constraint
      * Evaluates the constraint for parameter $other. Returns true if the
      * constraint is met, false otherwise.
      *
-     * @param mixed $other Value or object to evaluate.
-     *
+     * @param  mixed $other Value or object to evaluate.
      * @return bool
      */
     protected function matches($other)
@@ -47,28 +45,27 @@ class Exception extends Constraint
      * The beginning of failure messages is "Failed asserting that" in most
      * cases. This method should return the second part of that sentence.
      *
-     * @param mixed $other Evaluated value or object.
-     *
+     * @param  mixed  $other Evaluated value or object.
      * @return string
      */
     protected function failureDescription($other)
     {
         if ($other !== null) {
             $message = '';
-            if ($other instanceof Throwable) {
+            if ($other instanceof Exception) {
                 $message = '. Message was: "' . $other->getMessage() . '" at'
-                    . "\n" . Filter::getFilteredStacktrace($other);
+                        . "\n" . $other->getTraceAsString();
             }
 
-            return \sprintf(
+            return sprintf(
                 'exception of type "%s" matches expected exception "%s"%s',
-                \get_class($other),
+                get_class($other),
                 $this->className,
                 $message
             );
         }
 
-        return \sprintf(
+        return sprintf(
             'exception of type "%s" is thrown',
             $this->className
         );
@@ -81,7 +78,7 @@ class Exception extends Constraint
      */
     public function toString()
     {
-        return \sprintf(
+        return sprintf(
             'exception of type "%s"',
             $this->className
         );

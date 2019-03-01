@@ -31,7 +31,7 @@ class PhoneApi
             } catch (Exception $e) {
                 // If a 404 exception was encountered return false.
                 if ($e->getStatus() == 404) {
-                    //return false;
+                    return false;
                 } else {
                     throw $e;
                 }
