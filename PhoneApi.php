@@ -41,7 +41,6 @@ class PhoneApi
             try {
                 $number = $client->phone_numbers->get($number, array("CountryCode" => "US", "Type" => "carrier"));
                 $number->carrier->type; // Should throw an exception if the number doesn't exist.
-
                 return true;
             } catch (Exception $e) {
                 // If a 404 exception was encountered return false.
