@@ -11,40 +11,44 @@ class PhoneApiTest extends \PHPUnit_Framework_TestCase
     /*Test to Valid Number*/
     public function testCorectInputTrue()
     {
-        $phoneApi = new PhoneApi();
-        $phoneApi->setSid("AC8ccd9e7f6813b7b921ccbd38f037f19a");
-        $phoneApi->setToken("cf1e109ed1ca27fcecf1092b80aebdb7");
+        $phoneApi = new PhoneApi("AC8ccd9e7f6813b7b921ccbd38f037f19a", "cf1e109ed1ca27fcecf1092b80aebdb7", "US");
         $this->assertSame(true, $phoneApi->isValidNumber("79214623189"));
     }
 
     public function testCorrectInputFalse()
     {
-        $phoneApi = new PhoneApi();
-        $phoneApi->setSid("AC8ccd9e7f6813b7b921ccbd38f037f19a");
-        $phoneApi->setToken("cf1e109ed1ca27fcecf1092b80aebdb7");
+        $phoneApi = new PhoneApi("AC8ccd9e7f6813b7b921ccbd38f037f19a", "cf1e109ed1ca27fcecf1092b80aebdb7", "US");
         $this->assertSame(false, $phoneApi->isValidNumber("7926231"));
     }
 
     public function testInCorrectInput()
     {
-        $phoneApi = new PhoneApi();
-        $phoneApi->setSid("AC8ccd9e7f6813b7b921ccbd38f037f19a");
-        $phoneApi->setToken("cf1e109ed1ca27fcecf1092b80aebdb7");
+        $sid = "AC8ccd9e7f6813b7b921ccbd38f037f19a";
+        $token = "AC8ccd9e7f6813b7b921ccbd38f037f19a";
+        $countryCode = "EN";
+        $type = "carrier";
+        $phoneApi = new PhoneApi($sid, $token, $countryCode, $type);
         $this->assertSame(false, $phoneApi->isValidNumber("ddd"));
     }
 
     public function testInputNull()
     {
-        $phoneApi = new PhoneApi();
-        $phoneApi->setSid("AC8ccd9e7f6813b7b921ccbd38f037f19a");
-        $phoneApi->setToken("cf1e109ed1ca27fcecf1092b80aebdb7");
+        $sid = "AC8ccd9e7f6813b7b921ccbd38f037f19a";
+        $token = "AC8ccd9e7f6813b7b921ccbd38f037f19a";
+        $countryCode = "EN";
+        $type = "carrier";
+        $phoneApi = new PhoneApi($sid, $token, $countryCode, $type);
         $this->assertSame(false, $phoneApi->isValidNumber(null));
     }
 
-        public function testInputEmpty()
-        {
-            $phoneApi = new PhoneApi();
-            $this->assertSame(false, $phoneApi->isValidNumber("79214623189"));
-        }
+    public function testInputEmpty()
+    {
+        $sid = "AC8ccd9e7f6813b7b921ccbd38f037f19a";
+        $token = "AC8ccd9e7f6813b7b921ccbd38f037f19a";
+        $countryCode = "EN";
+        $type = "carrier";
+        $phoneApi = new PhoneApi($sid, $token, $countryCode, $type);
+        $this->assertSame(false, $phoneApi->isValidNumber("79214623189"));
+    }
 
 }

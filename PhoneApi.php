@@ -11,6 +11,21 @@ class PhoneApi
 {
     private $sid;
     private $token;
+    private $countryCode;
+
+    /**
+     * PhoneApi constructor.
+     *
+     * @param $sid
+     * @param $token
+     */
+    public function __construct($sid, $token,$countryCode)
+    {
+        $this->sid = $sid;
+        $this->token = $token;
+        $this->countryCode=$countryCode;
+    }
+
 
     //  private $client = new Lookups_Services_Twilio($sid, $token);
 
@@ -78,5 +93,37 @@ class PhoneApi
     public function setToken($token)
     {
         $this->token = $token;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCountryCode()
+    {
+        return $this->countryCode;
+    }
+
+    /**
+     * @param mixed $countryCode
+     */
+    public function setCountryCode($countryCode)
+    {
+        $this->countryCode = $countryCode;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * @param mixed $type
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
     }
 }
