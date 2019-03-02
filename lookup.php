@@ -11,7 +11,7 @@ require "vendor/autoload.php";
 function isValidNumber($number)
 {
     //first validate only numbers in input
-    if (isCorectInput($number)==false) {
+    if (isCorectInput($number)==false || empty($number) ) {
         return false;
     } else {
         // Your Account Sid and Auth Token from twilio.com/user/account

@@ -9,24 +9,24 @@ require "vendor/autoload.php";
 
 class PhoneApi
 {
-   private $sid = "AC8ccd9e7f6813b7b921ccbd38f037f19a";
-   private $token = "cf1e109ed1ca27fcecf1092b80aebdb7";
- //  private $client = new Lookups_Services_Twilio($sid, $token);
+    private $sid;
+    private $token;
+
+    //  private $client = new Lookups_Services_Twilio($sid, $token);
 
     function isValidNumber($number)
     {
         //first validate only numbers in input
-        if ($this->isCorectInput($number)==false) {
+        if ($this->isCorectInput($number) == false or empty($number) or empty($this->sid) or empty($this->token)) { //add check empty token ans sin
             return false;
         } else {
             // Your Account Sid and Auth Token from twilio.com/user/account
-            $sid = "AC8ccd9e7f6813b7b921ccbd38f037f19a";
-            $token = "cf1e109ed1ca27fcecf1092b80aebdb7";
-            $client = new Lookups_Services_Twilio($sid,
-                $token); // Try performing a carrier lookup and return true if successful.
+            $client = new Lookups_Services_Twilio($this->sid,
+                $this->token); // Try performing a carrier lookup and return true if successful.
             try {
                 $number = $client->phone_numbers->get($number, array("CountryCode" => "US", "Type" => "carrier"));
                 $number->carrier->type; // Should throw an exception if the number doesn't exist.
+
                 return true;
             } catch (Exception $e) {
                 // If a 404 exception was encountered return false.
@@ -39,12 +39,44 @@ class PhoneApi
         }
     }
 
-    function isCorectInput($number){
-        if (preg_match('/^\+?\d+$/', $number)){
+    function isCorectInput($number)
+    {
+        if (preg_match('/^\+?\d+$/', $number)) {
             return true;
-        }
-        else{
+        } else {
             return false;
         }
+    }
+
+    /**
+     * @return string
+     */
+    public function getSid()
+    {
+        return $this->sid;
+    }
+
+    /**
+     * @param string $sid
+     */
+    public function setSid($sid)
+    {
+        $this->sid = $sid;
+    }
+
+    /**
+     * @return string
+     */
+    public function getToken()
+    {
+        return $this->token;
+    }
+
+    /**
+     * @param string $token
+     */
+    public function setToken($token)
+    {
+        $this->token = $token;
     }
 }
