@@ -11,7 +11,7 @@ require "vendor/autoload.php";
 function isValidNumber($number)
 {
     //first validate only numbers in input
-    if (isCorectInput($number)==false || empty($number) ) {
+    if (isCorectInput($number) == false || empty($number)) {
         return false;
     } else {
         // Your Account Sid and Auth Token from twilio.com/user/account
@@ -22,11 +22,12 @@ function isValidNumber($number)
         try {
             $number = $client->phone_numbers->get($number, array("CountryCode" => "US", "Type" => "carrier"));
             $number->carrier->type; // Should throw an exception if the number doesn't exist.
+
             return true;
         } catch (Exception $e) {
             // If a 404 exception was encountered return false.
             if ($e->getStatus() == 404) {
-                //return false;
+                return false;
             } else {
                 throw $e;
             }
@@ -34,11 +35,11 @@ function isValidNumber($number)
     }
 }
 
-function isCorectInput($number){
-   if (preg_match('/^\+?\d+$/', $number)){
-       return true;
-   }
-   else{
-       return false;
-   }
+function isCorectInput($number)
+{
+    if (preg_match('/^\+?\d+$/', $number)) {
+        return true;
+    } else {
+        return false;
+    }
 }

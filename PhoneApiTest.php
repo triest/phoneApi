@@ -41,14 +41,5 @@ class PhoneApiTest extends \PHPUnit_Framework_TestCase
         $this->assertSame(false, $phoneApi->isValidNumber(null));
     }
 
-    public function testInputEmpty()
-    {
-        $sid = "AC8ccd9e7f6813b7b921ccbd38f037f19a";
-        $token = "AC8ccd9e7f6813b7b921ccbd38f037f19a";
-        $countryCode = "EN";
-        $type = "carrier";
-        $phoneApi = new PhoneApi($sid, $token, $countryCode, $type);
-        $this->assertSame(false, $phoneApi->isValidNumber("79214623189"));
-    }
-
+  
 }

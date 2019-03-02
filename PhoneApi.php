@@ -19,11 +19,11 @@ class PhoneApi
      * @param $sid
      * @param $token
      */
-    public function __construct($sid, $token,$countryCode)
+    public function __construct($sid, $token, $countryCode)
     {
         $this->sid = $sid;
         $this->token = $token;
-        $this->countryCode=$countryCode;
+        $this->countryCode = $countryCode;
     }
 
 
@@ -54,6 +54,7 @@ class PhoneApi
         }
     }
 
+    //check input is number
     function isCorectInput($number)
     {
         if (preg_match('/^\+?\d+$/', $number)) {
